@@ -1,0 +1,29 @@
+
+#name{
+    font-family: monospace;
+}
+
+.pictures {
+    border-style: solid;
+    border-width: 2px;
+    border-color: BLUE; 
+    padding-top: 5px ;
+    padding-left:5px;
+    padding-right:5px;
+    padding-bottom:5px;
+}
+
+.moviePosters {
+    width : 250px;
+    height: 250px;
+    border-radius:  20px;
+}
+
+
+li {
+    position:absolute;
+    left:140px;
+    font-size:15px;
+    font-family:cursive;
+}
+

@@ -24,9 +24,40 @@
 
 
 li {
-    position:absolute;
     left:140px;
     font-size:15px;
-    font-family:cursive;
+    font-family:cursive; 
 }
 
+ #movie1:after{
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    margin: 10px 3px 0 10px;
+    content: " ";
+    background: url(https://images-na.ssl-images-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SY1000_CR0,0,675,1000_AL_.jpg) no-repeat 0 0;
+    background-size: 100%;
+    }
+    
+
+ #movie2:after{
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    margin: 10px 3px 0 10px;
+    content: " ";
+    background: url(https://images-na.ssl-images-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SY1000_CR0,0,675,1000_AL_.jpg) no-repeat 0 0;
+    background-size: 100%;
+    }
+    
+ #movie3:after{
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    margin: 10px 3px 0 10px;
+    content: "             hjh ";
+    background: url(https://images-na.ssl-images-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SY1000_CR0,0,675,1000_AL_.jpg) no-repeat 0 0;
+    background-size: 100%;
+    }
+
+    

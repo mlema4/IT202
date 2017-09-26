@@ -7,17 +7,44 @@
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
          
+         <style> 
+             #template{
+             }
+             
+             #Completed{
+                 
+                 
+             }
+         </style>
+         
     </head>
     <body>
-        
+        <div class="container" id="results">
+            <div class="hidden" id="template">
+                <!--<h2>Panel Header with title</h2> -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Panel Header with panel-title</h3>
+                    </div>
+                    <div class="panel-body">Panel Content</div>
+                </div>
+            </div>
+        </div>
+                        
     
     <script> 
     $.get("https://data.cityofchicago.org/resource/cdmx-wzbz.json?$limit=100", function(response){
         console.log(response);
         $.each(response, function(indx, val){
             console.log(val);
-        $("body").append(val.service_request_number, val.street_address, val.status)
-        })
+        var template = $("#template").clone().removeAttr('class');
+        //template.add('id')
+        template.attr('id', val.status);
+        $(".panel-title", template).html(val.service_request_number);
+        $(".panel-body", template).html(val.street_address);
+        $("#results").append(template);
+      //  $("body").append(val.service_request_number, val.street_address, val.status, "<br>");
+        });
     });
     </script>
     </body>

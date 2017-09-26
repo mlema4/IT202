@@ -11,9 +11,12 @@
              #template{
              }
              
-             #Completed{
-                 
-                 
+             #Completed\ -\ Dup,  #Completed{
+                 background-color:Green;
+             }
+             
+             #Open{
+                 background-color:Yellow;
              }
          </style>
          
@@ -33,17 +36,15 @@
                         
     
     <script> 
-    $.get("https://data.cityofchicago.org/resource/cdmx-wzbz.json?$limit=100", function(response){
+    $.get("https://data.cityofchicago.org/resource/cdmx-wzbz.json", function(response){
         console.log(response);
         $.each(response, function(indx, val){
             console.log(val);
         var template = $("#template").clone().removeAttr('class');
-        //template.add('id')
-        template.attr('id', val.status);
         $(".panel-title", template).html(val.service_request_number);
-        $(".panel-body", template).html(val.street_address);
+        $(".panel-heading", template).attr('id', val.status);
+        $(".panel-body", template).html(val.street_address + "<br>" + val.status);
         $("#results").append(template);
-      //  $("body").append(val.service_request_number, val.street_address, val.status, "<br>");
         });
     });
     </script>

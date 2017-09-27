@@ -41,7 +41,7 @@
         $.each(response, function(indx, val){
             console.log(val);
         var template = $("#template").clone().removeAttr('class');
-        $(".panel-title", template).html(val.service_request_number);
+        $(".panel-title", template).html("<Strong>"  + val.service_request_number + "</Strong>");
         $(".panel-heading", template).attr('id', val.status);
         $(".panel-body", template).html(val.street_address + "<br>" + val.status);
         $("#results").append(template);

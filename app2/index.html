@@ -21,16 +21,25 @@
     </style>
   </head>
   <body>
-    <div id="map"></div>
+    
+    <form>
+     zip:<br>
+  <input type="text" name = "zip"><br>
+    </form>
+    <button onclick="initMap()">Search</button>
+    <div id="mapa"></div>
 <script>
   // This example displays a marker at the center of Australia.
   // When the user clicks the marker, an info window opens.
 
   function initMap() {
 //var uluru = { lat: 41.8781, lng: 87.6298 };
-    $.get("https://data.cityofchicago.org/resource/xpdx-8ivx.json", function(response) {
+   var zip =  $("input").val();
+
+    var url = "https://data.cityofchicago.org/resource/xpdx-8ivx.json?zip=" + zip;
+    $.get(url, function(response) {
       var chicago = {lat: parseFloat(response[0].latitude), lng: parseFloat(response[0].longitude)};
-      var map = new google.maps.Map(document.getElementById('map'), {
+      var map = new google.maps.Map(document.getElementById('mapa'), {
         zoom: 4,
         center: chicago
       });
@@ -46,14 +55,14 @@
         var marker = new google.maps.Marker({
           position: location,
           map: map,
-          title: 'Hello'
+          title: ''
         });
       });
     });
   }
     </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmc8MEmMaiClyUsR2j-ohbPQxwB7Xa-0k&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmc8MEmMaiClyUsR2j-ohbPQxwB7Xa-0k">
     </script>
   </body>
 </html>

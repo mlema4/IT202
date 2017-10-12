@@ -9,7 +9,8 @@
          
          <style> 
              #template{
-             }
+                 
+                 }
              
              #Completed\ -\ Dup,  #Completed{
                  background-color:Green;
@@ -18,20 +19,21 @@
              #Open, #Open\ -\ Dup{
                  background-color:Yellow;
              }
+             
          </style>
          
     </head>
     <body>
         <div class="container" id="results">
-            <div class="hidden" id="template">
+          <!--  <div class="hidden" id="template"> -->
                 <!--<h2>Panel Header with title</h2> -->
-                <div class="panel panel-default">
+                <div class="panel panel-default hidden" id ="template" >
                     <div class="panel-heading">
                         <h3 class="panel-title">Panel Header with panel-title</h3>
                     </div>
                     <div class="panel-body">Panel Content</div>
                 </div>
-            </div>
+          <!--  </div> -->
         </div>
                      
     
@@ -45,6 +47,7 @@
         $(".panel-heading", template).attr('id', val.status);
         $(".panel-body", template).html(val.street_address + "<br>" + val.status);
         $("#results").append(template);
+        $("#template", template).attr('id', "show");
         });
     });
     </script>

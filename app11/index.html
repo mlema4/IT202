@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+          <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+    </head>
+    <body>
+        <form action="/action_page.php">
+          First name:
+          <input type="text" name="firstname" >
+          <br>
+          <input type="radio" name="location" > Share Location<br>
+          <span>  </span>
+          <br>
+          <button type="submit">Search</button>
+        </form> 
+        
+
+    </body>
+    
+    <script>
+
+           var db = new Dexie("MyDB");
+            db.version(1).stores({settings: "name,value"});
+            db.on("populate", function() {
+                db.settings.add({name: "Display Name", value: "false"});
+            });
+        db.open();
+    </script>
+</html>

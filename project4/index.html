@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Canvas app</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <style>
+            #pokeball{
+                display:none;
+            }
+        </style>
+    
+    </head>
+    
+    
+    <body>
+        <img id="pokeball" width="100" height="100"
+src="http://upload.wikimedia.org/wikipedia/de/5/5d/Kpokeball.png" alt="Pokeball">
+
+        <canvas id="myCanvas" width="800" height="500" style="border:1px solid #000000;"></canvas>
+        <script> 
+
+
+        var canvasSetup = document.getElementById("myCanvas");
+        var ctx = canvasSetup.getContext("2d");
+       var image = document.getElementById("pokeball");
+        //ctx.drawImage(img, 10, 10);
+
+        
+        var player = {img: image, realX:100+50, realY:canvasSetup.height-50,  x:100, y: canvasSetup.height-100, shape: "image", radius: 32};
+        /*{x: 100, y: canvasSetup.height- 100, radius: 50, color: getRndColor(), shape: "circle"};
+        drawCircle(player.x, player.y,player.radius, player.color);*/
+        
+        var harm = {x: Math.floor(Math.random() * canvasSetup.width), y: 0 , radius: 35, color: "red", shape: "circle"};
+        drawCircle(harm.x, harm.y, harm.radius, harm.color);
+        
+        var benefit = {x: Math.floor(Math.random() * canvasSetup.width), y: 0, radius: 35, color: "blue", shape: "circle"};
+        drawCircle(benefit.x, benefit.y, benefit.radius, benefit.color);
+        
+        var score = 0;
+        var lives = 3;
+       
+       function draw() { 
+           
+
+      //  ctx.fill(Text(0, 40,50))
+          
+           harm.y +=3;
+           benefit.y +=3;
+           ctx.clearRect(0,0,canvasSetup.width, canvasSetup.height);
+           
+           ctx.font = "30px Arial";
+           ctx.fillText("Score",10,50);
+           ctx.fillText(score, 100,50);
+           ctx.fillText("Lives: " + lives, 500, 50);
+           
+           drawCharacter(harm);
+           drawCharacter(benefit);
+           drawCharacter(player);
+      
+           if(isGameOver()){
+           ctx.fillStyle = "red";
+           ctx.textAlign = "center";
+           ctx.font = "100px Ariel";
+           ctx.fillText("GAME OVER", canvasSetup.width/2, canvasSetup.height/2); 
+           //cancelAnimationFrame(draw);
+           return;
+           }
+           
+           if(reachedEdge(harm, "bottom")){
+               harm.y =0;
+               harm.x = Math.floor(Math.random() * canvasSetup.width);
+           }
+           
+           if(reachedEdge(benefit,"bottom")){
+               benefit.y = 0;
+               benefit.x = Math.floor(Math.random() * canvasSetup.width);
+           }
+           
+           drawCharacter(harm);
+           drawCharacter(benefit);
+           drawCharacter(player);
+           
+           
+           if (areColliding(player, harm)){
+            harm.y =0;
+            harm.x = Math.floor(Math.random() * canvasSetup.width);
+            lives--;
+           }
+           
+           if (areColliding(player, benefit)) {
+             benefit.y = 0;
+             benefit.x = Math.floor(Math.random() * canvasSetup.width);
+             score++;
+           }
+           
+           
+           requestAnimationFrame(draw);
+           
+            
+            
+       } 
+       
+        function isGameOver(){
+            return (lives == 0);
+        }
+        
+        function areColliding(character1, character2){
+            var dx = character1.realX - character2.x;
+            var dy = character1.realY - character2.y;
+            var distance = Math.sqrt(dx * dx + dy * dy);
+            
+            return (distance < character1.radius + character2.radius);
+                //character2.y = 0;
+            
+            
+        }
+        
+        
+        function reachedEdge(character, edge){
+            if (edge == 'bottom' && character.y > canvasSetup.height)
+                return true;
+            if(edge == 'right' && character.x > 750){
+                return true;
+            }
+            
+            if(edge == 'left' && character.x < -50){
+                return true;
+            }
+        }
+        
+        function drawCharacter(character){
+            switch(character.shape){
+                case 'circle' : 
+                    drawCircle(character.x, character.y, character.radius, character.color);
+                    break;
+                case 'image':
+                    ctx.drawImage(character.img, character.x, character.y);
+                    break;
+                default: console.log('character.shape case fell through');
+            }
+            
+        }
+        
+        function getRndColor() {
+           var r = 255*Math.random()|0,
+            g = 255*Math.random()|0,
+            b = 255*Math.random()|0;
+            return 'rgb(' + r + ',' + g + ',' + b + ')';
+        }
+        
+        function drawCircle(x, y, radius, color){
+            ctx.beginPath();
+            ctx.arc(x,y,radius,0,2*Math.PI);
+            ctx.stroke();
+            ctx.fillStyle = color;
+            ctx.fill();
+        }
+    
+    
+   $(document).ready(function(){
+   
+        
+        document.addEventListener('keydown', (event) => {
+          const keyName = event.key;
+          //console.log(keyName);
+          
+          if(keyName == "ArrowLeft"){
+            if(!reachedEdge(player, 'left')){
+                player.x -= 7;
+                player.realX -=7;
+            }
+          }
+        
+        if(keyName == "ArrowRight")
+            if(!reachedEdge(player, 'right')){
+                player.x += 7;
+                player.realX += 7;
+            }
+                console.log(player.x);
+         
+        },false); 
+        
+ requestAnimationFrame(draw);
+        
+        
+    });
+    
+    
+        
+/*
+$(canvas).on("click", function(event){
+    var canvasSetup = document.getElementById("myCanvas");
+    var ctx = canvasSetup.getContext("2d");
+               var x = event.offsetX;
+            var y = event.offsetY;
+
+    ctx.clearRect(x, y, canvasSetup.width, canvasSetup.height);
+});
+*/
+//oldX = Math.floor(Math.random() *document.getElementById("myCanvas").width);
+//oldY = Math.floor(Math.random() * document.getElementById("myCanvas").height);
+//requestAnimationFrame(drawCircle);
+        </script>
+    </body>
+</html>

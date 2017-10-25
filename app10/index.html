@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Canvas app</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <canvas id="myCanvas" width="800" height="500" style="border:1px solid #000000;"></canvas>
+        <script> 
+
+
+        var canvasSetup = document.getElementById("myCanvas");
+        var ctx = canvasSetup.getContext("2d");
+        
+        
+        var player = {x: Math.floor(Math.random() * canvasSetup.width), y: Math.floor(Math.random() * canvasSetup.height), radius: 50, color: getRndColor()};
+        drawCircle(player.x, player.y,player.radius, player.color);
+        var harm = {x: Math.floor(Math.random() * canvasSetup.width), y: Math.floor(Math.random() * canvasSetup.height), radius: 50, color: getRndColor()};
+        drawCircle(harm.x, harm.y, harm.radius, harm.color);
+        var benefit = {x: Math.floor(Math.random() * canvasSetup.width), y: Math.floor(Math.random() * canvasSetup.height), radius: 50, color: getRndColor()};
+        drawCircle(benefit.x, benefit.y, benefit.radius, benefit.color);
+        
+        
+
+        // initDrawCircle(player);
+        // initDrawCircle(harm);
+        // initDrawCircle(benefit);
+        
+
+       
+       
+       function draw() { 
+           
+           if (areColliding(player, harm)){
+               
+           }
+           
+           if (areColliding(player, benefit)) {
+            
+           }
+            
+       } 
+       
+        function initDrawCircle(character) { 
+            //var radius = Math.floor(Math.random() * 101);
+          //  character.x = Math.floor(Math.random() * document.getElementById("myCanvas").width);
+            character.y = Math.floor(Math.random() * document.getElementById("myCanvas").height);
+            
+            var distance = getDistance(oldX, oldY, newX, newY);
+            console.log("x coords: " + x+ ", y coords: " + y);
+            ctx.beginPath();
+            ctx.arc(x,y,radius,0,2*Math.PI);
+            ctx.stroke();
+            character.color = getRndColor();
+            ctx.fillStyle = character.color;
+            ctx.fill();
+            
+    //    });
+            requestAnimationFrame(drawCircle);
+        }
+        
+        
+/*        function areColliding(){
+            
+            
+        }*/
+        
+        
+/*        function reachedEdge(character, edge){
+            if (edge == 'buttom' && character.y > canvas.height)
+                return true;
+        }*/
+        
+/*        function drawCharacter(character){
+            switch(character.shape){
+                case 'circle' : 
+                    drawCircle(character.x, character.y, character.radius, character.color);
+                    break;
+                default: console.log('character.shape case fell through');
+            }
+            
+        }*/
+        
+        function getRndColor() {
+           var r = 255*Math.random()|0,
+            g = 255*Math.random()|0,
+            b = 255*Math.random()|0;
+            return 'rgb(' + r + ',' + g + ',' + b + ')';
+        }
+        
+        function drawCircle(x, y, radius, color){
+            ctx.beginPath();
+            ctx.arc(x,y,radius,0,2*Math.PI);
+            ctx.stroke();
+            ctx.fillStyle = color;
+            ctx.fill();
+        }
+    
+    
+   $(document).ready(function(){
+       // drawCircle(player.x ,player.y, player.radius, player.color);
+        
+        
+    });
+    
+    
+        
+/*
+$(canvas).on("click", function(event){
+    var canvasSetup = document.getElementById("myCanvas");
+    var ctx = canvasSetup.getContext("2d");
+               var x = event.offsetX;
+            var y = event.offsetY;
+
+    ctx.clearRect(x, y, canvasSetup.width, canvasSetup.height);
+});
+*/
+//oldX = Math.floor(Math.random() *document.getElementById("myCanvas").width);
+//oldY = Math.floor(Math.random() * document.getElementById("myCanvas").height);
+//requestAnimationFrame(drawCircle);
+        </script>
+    </body>
+</html>

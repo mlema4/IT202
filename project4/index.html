@@ -39,14 +39,15 @@ src="http://upload.wikimedia.org/wikipedia/de/5/5d/Kpokeball.png" alt="Pokeball"
         
         var score = 0;
         var lives = 3;
+        var speed = 2;
        
        function draw() { 
            
 
       //  ctx.fill(Text(0, 40,50))
           
-           harm.y +=3;
-           benefit.y +=3;
+           harm.y += speed;
+           benefit.y +=speed;
            ctx.clearRect(0,0,canvasSetup.width, canvasSetup.height);
            
            ctx.font = "30px Arial";
@@ -92,7 +93,9 @@ src="http://upload.wikimedia.org/wikipedia/de/5/5d/Kpokeball.png" alt="Pokeball"
              benefit.y = 0;
              benefit.x = Math.floor(Math.random() * canvasSetup.width);
              score++;
+             increaseSpeed();
            }
+           
            
            
            requestAnimationFrame(draw);
@@ -100,6 +103,11 @@ src="http://upload.wikimedia.org/wikipedia/de/5/5d/Kpokeball.png" alt="Pokeball"
             
             
        } 
+       
+       function increaseSpeed(){
+           if ((score%5) == 0)
+            speed += 4;
+       }
        
         function isGameOver(){
             return (lives == 0);

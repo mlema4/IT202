@@ -7,7 +7,23 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   
+                <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            
+  
     <link rel="stylesheet" type="text/css" href="styleCard.css">
+    
+    <style>
+      #template{
+        display:none;
+      }
+    </style>
     </head>
   <body>
     <div id="template">
@@ -56,19 +72,32 @@
     
     
     
-        <script> 
-    $.get("https://randomuser.me/api/?results=10", function(response){
-      //  console.log(response);
-      var data = response.results;
-        $.each(data, function(indx, val){
-            //console.log(val);
-            console.log(indx);
-        var clone = $("#template").clone().removeAttr('id');
-        clone.find(".title .info a" ).text(val.first);
-        //$(".title", template).html(val.name.first);
-        $("body").append(template);
-        });
-    });
-    </script>
+     
+    <script>
+     $.get("https://randomuser.me/api/?results=50", function(response) {
+                //console.log(response.results);
+                
+                var userData = response.results;
+                console.log(userData);
+                
+                $.each(userData, function(i,v) {
+                    var clone = $("#template").clone();
+                    
+                    var fullName = v.name.first + " " + v.name.last;
+                    
+                    clone.find(".info .title a").text(fullName);
+                    
+                    clone.find(".avatar img").attr("src", v["picture"]["thumbnail"]);
+                    
+                    clone.removeClass("hidden");
+                    clone.attr("id", v.cell);
+                    
+                    $("body").append(clone);
+                });
+                
+                
+                
+            });
+       </script>
   </body>
 </html>

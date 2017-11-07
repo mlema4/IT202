@@ -25,13 +25,13 @@ self.addEventListener('install', e => {
   e.waitUntil(
     caches.open('airhorner').then(cache => {
       return cache.addAll([
-        `/`,
-        `https://preview.c9users.io/mlema4/it202/app14/airhorn-master/app/index.html?timestamp=${timeStamp}`,
-        `https://preview.c9users.io/mlema4/it202/app14/airhorn-master/app/styles/main.css?timestamp=${timeStamp}`,
-        `https://preview.c9users.io/mlema4/it202/app14/airhorn-master/app/scripts/main.min.js?timestamp=${timeStamp}`,
-        `https://preview.c9users.io/mlema4/it202/app14/airhorn-master/app/scripts/comlink.global.js?timestamp=${timeStamp}`,
-        `https://preview.c9users.io/mlema4/it202/app14/airhorn-master/app/scripts/messagechanneladapter.global.js?timestamp=${timeStamp}`,
-        `https://preview.c9users.io/mlema4/it202/app14/airhorn-master/app/sounds/airhorn.mp3?timestamp=${timeStamp}`
+        `./`,
+        `./index.html?timestamp=${timeStamp}`,
+        `./styles/main.css?timestamp=${timeStamp}`,
+        `./scripts/main.min.js?timestamp=${timeStamp}`,
+        `./scripts/comlink.global.js?timestamp=${timeStamp}`,
+        `./scripts/messagechanneladapter.global.js?timestamp=${timeStamp}`,
+        `./sounds/airhorn.mp3?timestamp=${timeStamp}`
       ])
       .then(() => self.skipWaiting());
     })

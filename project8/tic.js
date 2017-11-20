@@ -131,7 +131,7 @@ class Game extends React.Component {
 
 ReactDOM.render(
   <Game />,
-  document.body
+  document.getElementById("root")
 );
 
 function calculateWinner (squares){

@@ -63,7 +63,7 @@
         // $("#screen2").append("Results found: " + response.length);
         var chicago = { lat: 41.8781, lng: -87.6298 };
         var map = new google.maps.Map(document.getElementById('screen2'), {
-          zoom: 8,
+          zoom: 10,
           center: chicago
         });
         map.addListener(map, 'idle', function() {
@@ -91,7 +91,7 @@
                     //$("#template", template).attr('id', "show");*/
 
           if (val.location) {
-            var infoString = val.title + "<br> : Date " + val.date + "<br> Address: " + val.location_address + "<br> Rating " + val.rating + "<br> Park:" + val.park;
+            var infoString = val.title + "<br>Date: " + val.date + "<br> Address: " + val.location_address + "<br> Rating: " + val.rating + "<br> Park:" + val.park;
             var contentString = '<div id="content">' +
               '<div id="siteNotice">' +
               '</div>' +
@@ -108,8 +108,8 @@
               content: contentString
             });
 
-            var latitude = parseFloat(val.location.coordinates[0]);
-            var longitude = parseFloat(val.location.coordinates[1]);
+            var latitude = parseFloat(val.location.coordinates[1]);
+            var longitude = parseFloat(val.location.coordinates[0]);
             
             console.log(latitude);
             console.log(longitude);
@@ -137,10 +137,12 @@
 
     $(".link").on("click", function() {
       $(".screen").hide();
+      $("#screen2").hide();
+      $("#screen1").hide();
       var target = $(this).attr("href");
       console.log(target);
       $(target).show();
-      google.maps.event.trigger(map, 'resize');
+     // google.maps.event.trigger(map, 'resize');
 
     });
   });

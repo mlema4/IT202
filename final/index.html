@@ -39,15 +39,16 @@
   <aside id="shrine-nav-menu" class="mdc-temporary-drawer" data-mdc-auto-init="MDCTemporaryDrawer">
     <nav class="mdc-temporary-drawer__drawer">
       <header class="mdc-temporary-drawer__header"></header>
-      <nav class="mdc-temporary-drawer__content mdc-list">
-        <a class="mdc-list-item" href="#">Home</a>
-        <a class="mdc-list-item" href="#">Map</a>
-        <a class="mdc-list-item" href="#">Calander</a>
+      <nav class="mdc-temporary-drawer__content mdc-list nav-link">
+        <a class="mdc-list-item link" href="#screen1">Home</a>
+        <a class="mdc-list-item link" href="#screen2">Map</a>
+        <a class="mdc-list-item link" href="#screen3">Calander</a>
       </nav>
     </nav>
   </aside>
-
-  <div id="screen1" class="mdc-layout-grid mdc-toolbar-fixed-adjust">
+  <div class = "jumbotron">
+  <div class = "container screen" id = "screen1">
+  <div class="mdc-layout-grid mdc-toolbar-fixed-adjust">
     <!-- add input form here -->
    <form>
         <div class="formDiv">
@@ -76,20 +77,16 @@
           <a id="search" class="btn btn-primary btn-lg" href="#" role="button" disabled>Search</a>
         </div>
       </form>
-      
-  </div>
-  
-  <div id = "map screen2" class = "hidden">
-    <!-- map will go here -->
-    <p>
-      CHECKING IF SCREEN APPEARS
-    </p>
-    <div id = "map">
-      
     </div>
+
+  </div>
+</div>
+  <div id = "screen2" class = "container screen "  style = "width:100%; height:100%">
+    <!-- map will go here -->
+    <p> Please search something first</p>
   </div>
   
-  <div id ="info" class = "hidden">
+<!--  <div id ="info" class = "hidden">
   <div class="card" id = "template">
   <div class="card-block">
     <h4 class="card-title">Card title</h4>
@@ -97,13 +94,15 @@
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
 </div>
-  </div>
+  </div>-->
   
-  <div id="calendar screen3" class = "hidden">
+  <div id="screen3" class = "screen container">
     <!-- calendar will go here
     Will probably need a button here
     -->
   </div>
+
+
   
   <script
     src="https://unpkg.com/material-components-web@0.9.1/dist/material-components-web.min.js">

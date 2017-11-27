@@ -101,6 +101,21 @@ html, body {
 }
 
 
-.hidden{
+/*.hidden{
   display: none;
+}
+*/
+.screen{
+  height:400px;
+  display:none;
+  
+}
+
+#template{
+  display:none;
+}
+
+#screen2{
+  height:400px;
+  width:400px;
 }

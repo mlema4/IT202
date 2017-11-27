@@ -4,8 +4,10 @@
 
 
     $("#search").on("click", function() {
+      
       $("#screen1").hide();
       $("#screen2").show();
+      $("#screen2").removeAttr("class");
       $("#search").prop("disabled", false);
 
       var url = "https://data.cityofchicago.org/resource/cm53-g3up.json";
@@ -59,16 +61,25 @@
                  }*/
 
         // $("#screen2").append("Results found: " + response.length);
-        var chicago = { lat: 41.8781, lng: 87.6298 };
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 9,
+        var chicago = { lat: 41.8781, lng: -87.6298 };
+        var map = new google.maps.Map(document.getElementById('screen2'), {
+          zoom: 8,
           center: chicago
         });
         map.addListener(map, 'idle', function() {
           map.trigger(map, 'resize');
         });
 
+        
+  // var marker = new google.maps.Marker({
+  //     position: chicago,
+  //     title:"Hello World!",
+  //     visible: true
+  // });
+  // marker.setMap(map);
+
         $.each(response, function(indx, val) {
+          
           //console.log(val);
           /*          var template = $("#template").clone().removeAttr('id').removeClass("hidden");
                     
@@ -92,21 +103,24 @@
               '</div>';
 
 
-
+            //console.log(contentString);
             var infowindow = new google.maps.InfoWindow({
               content: contentString
             });
 
             var latitude = parseFloat(val.location.coordinates[0]);
             var longitude = parseFloat(val.location.coordinates[1]);
-
+            
+            console.log(latitude);
+            console.log(longitude);
             var location = { lat: latitude, lng: longitude };
             var marker = new google.maps.Marker({
               position: location,
               map: map,
-              title: ''
+              title: 'hello',
+              visible:true
             });
-
+            
             marker.addListener('click', function() {
               infowindow.open(map, marker);
             });
@@ -121,9 +135,10 @@
 
     });
 
-    $(".nav-link").on("click", function() {
+    $(".link").on("click", function() {
       $(".screen").hide();
       var target = $(this).attr("href");
+      console.log(target);
       $(target).show();
       google.maps.event.trigger(map, 'resize');
 

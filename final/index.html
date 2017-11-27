@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet"
         href="https://unpkg.com/material-components-web@0.9.1/dist/material-components-web.min.css">
-  <link rel="stylesheet" href="./app.css">
+  <link rel="stylesheet" href="app.css">
 </head>
 <body class="mdc-typography">
   <header id="shrine-header"
@@ -36,17 +36,62 @@
       <header class="mdc-temporary-drawer__header"></header>
       <nav class="mdc-temporary-drawer__content mdc-list">
         <a class="mdc-list-item" href="#">Home</a>
-        <a class="mdc-list-item" href="#">Map</a>
-        <a class="mdc-list-item" href="#">Tweets</a>
+        <a class="mdc-list-item" href="#">Clothing</a>
+        <a class="mdc-list-item" href="#">Popsicles</a>
       </nav>
     </nav>
   </aside>
 
   <main id="shrine-products" class="mdc-layout-grid mdc-toolbar-fixed-adjust">
-
+    <div class="mdc-layout-grid__cell">
+      <div class="mdc-card shrine-product-card">
+        <section class="mdc-card__primary">
+          <span class="mdc-card__title shrine-product-card__price">$20</span>
+        </section>
+        <img class="shrine-product-card__image" width="240" height="240" alt="Sunglasses" src="assets/sunnies.png">
+      </div>
+    </div>
+    <div class="mdc-layout-grid__cell">
+      <div class="mdc-card shrine-product-card">
+        <section class="mdc-card__primary">
+          <span class="mdc-card__title shrine-product-card__price">$80</span>
+        </section>
+        <img class="shrine-product-card__image" width="240" height="240" alt="Shoes" src="assets/chucks.png">
+      </div>
+    </div>
+    <div class="mdc-layout-grid__cell">
+      <div class="mdc-card shrine-product-card">
+        <section class="mdc-card__primary">
+          <span class="mdc-card__title shrine-product-card__price">$90</span>
+        </section>
+        <img class="shrine-product-card__image" width="240" height="240" alt="Beach ball" src="assets/beachball.png">
+      </div>
+    </div>
+    <div class="mdc-layout-grid__cell">
+      <div class="mdc-card shrine-product-card">
+        <section class="mdc-card__primary">
+          <span class="mdc-card__title shrine-product-card__price">$30</span>
+        </section>
+        <img class="shrine-product-card__image" width="240" height="240" alt="Backpack" src="assets/backpack.png">
+      </div>
+    </div>
+    <div class="mdc-layout-grid__cell">
+      <div class="mdc-card shrine-product-card">
+        <section class="mdc-card__primary">
+          <span class="mdc-card__title shrine-product-card__price">$90</span>
+        </section>
+        <img class="shrine-product-card__image" width="240" height="240" alt="Clock" src="assets/clock.png">
+      </div>
+    </div>
+    <div class="mdc-layout-grid__cell">
+      <div class="mdc-card shrine-product-card">
+        <section class="mdc-card__primary">
+          <span class="mdc-card__title shrine-product-card__price">$30</span>
+        </section>
+        <img class="shrine-product-card__image" width="240" height="240" alt="Fish bowl" src="assets/fishbowl.png">
+      </div>
+    </div>
   </main>
-  
-  
   <script
     src="https://unpkg.com/material-components-web@0.9.1/dist/material-components-web.min.js">
   </script>
@@ -57,8 +102,5 @@
       document.getElementById('shrine-nav-menu').MDCTemporaryDrawer.open = true;
     });
   </script>
-  
-  <script type="text/javascript" src="./index.js"></script>
-  <script type="text/javascript" src="./require.js"></script>
 </body>
 </html>

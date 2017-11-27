@@ -51,9 +51,12 @@
       $.get(url + "?" + parameterString, function(response) {
         console.log(response);
         console.log(url + "?" + parameterString);
-      
+        console.log(response[0].location);
+         if (response[0].location){
+            console.log(response[0].location.coordinates[0])
+         }
       $("#screen2").append("Results found: " + response.length);
-      var chicago = { lat: parseFloat(response[0].latitude), lng: parseFloat(response[0].longitude) };
+      var chicago = { lat:41.8781, lng: 87.6298};
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 9,
         center: chicago

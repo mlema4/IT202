@@ -31,7 +31,7 @@ html, body {
 }
 
 #shrine-logo {
-  background: url(./burger2.png) left center no-repeat;
+  background: url() left center no-repeat;
   background-size: contain;
   width: 100%;
   height: 100%;
@@ -72,7 +72,7 @@ html, body {
 }
 
 #shrine-nav-menu .mdc-temporary-drawer__header {
-  background: url(assets/logo.png) 32px 32px no-repeat;
+  background: url() 32px 32px no-repeat;
   background-size: 30%;
 }
 
@@ -81,7 +81,7 @@ html, body {
 }
 
 #shrine-nav-menu .mdc-temporary-drawer__content {
-  background: url(assets/diamond.svg) -32px bottom no-repeat;
+  background: url() -32px bottom no-repeat;
   background-size: 50%;
 }
 
@@ -98,4 +98,9 @@ html, body {
 #shrine-products .mdc-layout-grid__cell {
   display: flex;
   justify-content: center;
+}
+
+
+.hidden{
+  display: none;
 }

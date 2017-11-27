@@ -7,14 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" sizes="192x192" href="https://material.io/static/images/simple-lp/favicons/components-192x192.png">
   <link rel="shortcut icon" href="https://material.io/static/images/simple-lp/favicons/components-72x72.png">
-
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="https://v4-alpha.getbootstrap.com/examples/jumbotron/jumbotron.css" rel="stylesheet">
   <link rel="stylesheet"
         href="https://unpkg.com/material-components-web@0.9.1/dist/material-components-web.min.css">
-  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="./app.css">
 </head>
 <body class="mdc-typography">
   <header id="shrine-header"
@@ -36,62 +41,66 @@
       <header class="mdc-temporary-drawer__header"></header>
       <nav class="mdc-temporary-drawer__content mdc-list">
         <a class="mdc-list-item" href="#">Home</a>
-        <a class="mdc-list-item" href="#">Clothing</a>
-        <a class="mdc-list-item" href="#">Popsicles</a>
+        <a class="mdc-list-item" href="#">Map</a>
+        <a class="mdc-list-item" href="#">Calander</a>
       </nav>
     </nav>
   </aside>
 
-  <main id="shrine-products" class="mdc-layout-grid mdc-toolbar-fixed-adjust">
-    <div class="mdc-layout-grid__cell">
-      <div class="mdc-card shrine-product-card">
-        <section class="mdc-card__primary">
-          <span class="mdc-card__title shrine-product-card__price">$20</span>
-        </section>
-        <img class="shrine-product-card__image" width="240" height="240" alt="Sunglasses" src="assets/sunnies.png">
-      </div>
-    </div>
-    <div class="mdc-layout-grid__cell">
-      <div class="mdc-card shrine-product-card">
-        <section class="mdc-card__primary">
-          <span class="mdc-card__title shrine-product-card__price">$80</span>
-        </section>
-        <img class="shrine-product-card__image" width="240" height="240" alt="Shoes" src="assets/chucks.png">
-      </div>
-    </div>
-    <div class="mdc-layout-grid__cell">
-      <div class="mdc-card shrine-product-card">
-        <section class="mdc-card__primary">
-          <span class="mdc-card__title shrine-product-card__price">$90</span>
-        </section>
-        <img class="shrine-product-card__image" width="240" height="240" alt="Beach ball" src="assets/beachball.png">
-      </div>
-    </div>
-    <div class="mdc-layout-grid__cell">
-      <div class="mdc-card shrine-product-card">
-        <section class="mdc-card__primary">
-          <span class="mdc-card__title shrine-product-card__price">$30</span>
-        </section>
-        <img class="shrine-product-card__image" width="240" height="240" alt="Backpack" src="assets/backpack.png">
-      </div>
-    </div>
-    <div class="mdc-layout-grid__cell">
-      <div class="mdc-card shrine-product-card">
-        <section class="mdc-card__primary">
-          <span class="mdc-card__title shrine-product-card__price">$90</span>
-        </section>
-        <img class="shrine-product-card__image" width="240" height="240" alt="Clock" src="assets/clock.png">
-      </div>
-    </div>
-    <div class="mdc-layout-grid__cell">
-      <div class="mdc-card shrine-product-card">
-        <section class="mdc-card__primary">
-          <span class="mdc-card__title shrine-product-card__price">$30</span>
-        </section>
-        <img class="shrine-product-card__image" width="240" height="240" alt="Fish bowl" src="assets/fishbowl.png">
-      </div>
-    </div>
+  <main id="shrine-products screen1" class="mdc-layout-grid mdc-toolbar-fixed-adjust">
+    <!-- add input form here -->
+   <form>
+        <div class="formDiv">
+          <label>Inspection Date: <br>
+                    <input type ="date" id="date">
+          </label>
+        </div>
+        
+        <div class="formDiv">
+         <label>Movie Name: <br>
+          <input type="text" id="title">
+          </label>
+        </div>
+        <span>
+          Rating:
+        </span>
+        <div class ="formDiv">
+          <input type="checkbox" name="rating" id = "pg"   value="pg">PG<br>
+          <input type="checkbox" name="rating" id= "pg-13" value="pg-13">PG-13<br>
+          <input type="checkbox" name="rating" id = "g"    value="g">G<br>
+          <input type="checkbox" name="rating" id = "nr"   value="nr">NR<br>
+          
+        </div>
+        
+        <div class="formDiv">
+          <a id="search" class="btn btn-primary btn-lg" href="#" role="button" disabled>Search</a>
+        </div>
+      </form>
+      
   </main>
+  
+  <div id = "map screen2" class = "hidden">
+    <!-- map will go here -->
+    
+    
+  </div>
+  
+  <div id ="info" class = "hidden">
+  <div class="card" id = "template">
+  <div class="card-block">
+    <h4 class="card-title">Card title</h4>
+    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+  </div>
+  
+  <div id="calendar screen3" class = "hidden">
+    <!-- calendar will go here
+    Will probably need a button here
+    -->
+  </div>
+  
   <script
     src="https://unpkg.com/material-components-web@0.9.1/dist/material-components-web.min.js">
   </script>
@@ -102,5 +111,7 @@
       document.getElementById('shrine-nav-menu').MDCTemporaryDrawer.open = true;
     });
   </script>
+  <script type="text/javascript" src="index.js"></script>
+     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmc8MEmMaiClyUsR2j-ohbPQxwB7Xa-0k"></script>
 </body>
 </html>

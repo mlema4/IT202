@@ -23,36 +23,13 @@
       var parameterString = $.param(parameters);
       console.log(parameterString);
 
-      if (document.getElementById("pg").checked) {
-        parameters.rating = "PG";
-      }
-      var parameterString = $.param(parameters);
-      var response1 = $.get(url + "?" + parameterString, function() {});
-
-
-      if (document.getElementById("pg-13").checked) {
-        parameters.rating = "PG-13";
-      }
-      var parameterString = $.param(parameters);
-      var response2 = $.get(url + "?" + parameterString, function() {});
-
-
-      if (document.getElementById("g").checked) {
-        parameters.rating = "G";
-      }
-      var parameterString = $.param(parameters);
-      var response3 = $.get(url + "?" + parameterString, function() {});
-
-
-      if (document.getElementById("nr").checked) {
-        parameters.rating = "NR";
-      }
+      parameters.rating = $("#rating").val();
       var parameterString = $.param(parameters);
       var response4 = $.get(url + "?" + parameterString, function() {});
 
 
       $.get(url + "?" + parameterString, function(response) {
-        
+        console.log(url + "?" + parameterString);
         /*        console.log(response);
                 console.log(url + "?" + parameterString);
                 console.log(response[0].location);
@@ -91,7 +68,9 @@
                     //$("#template", template).attr('id', "show");*/
 
           if (val.location) {
+            var info = {title:val.title, date:val.date, location:val.location_address, rating:val.rating, park:val.park};
             var infoString = val.title + "<br>Date: " + val.date + "<br> Address: " + val.location_address + "<br> Rating: " + val.rating + "<br> Park:" + val.park;
+            var buttonCode =   '<a id=" ' +  info + '"  class="btn btn-primary btn-lg" href="#screen3" role="button" disabled onclick="saveMovie()">Save</a>' 
             var contentString = '<div id="content">' +
               '<div id="siteNotice">' +
               '</div>' +
@@ -99,7 +78,7 @@
               '<div id="bodyContent">' +
               '<p>' +
               infoString +
-              '</div>' +
+              '</div>' + buttonCode +
               '</div>';
 
 
@@ -143,7 +122,13 @@
       console.log(target);
       $(target).show();
      // google.maps.event.trigger(map, 'resize');
-
     });
+    
+  
+  function test(){
+    console.log("TESTING CALL");
+  }
+
+    
   });
   

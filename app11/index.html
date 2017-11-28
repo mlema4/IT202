@@ -6,7 +6,7 @@
           <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     </head>
     <body>
-        <form action="/action_page.php">
+        <form>
           First name:
           <input type="text" name="firstname" >
           <br>
@@ -20,7 +20,7 @@
     </body>
     
     <script>
-
+            $()
            var db = new Dexie("MyDB");
             db.version(1).stores({settings: "name,value"});
             db.on("populate", function() {

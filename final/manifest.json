@@ -1,0 +1,12 @@
+{
+  "name": "Movie",
+  "short_name": "Movie",
+  "icons": [{
+    "src": "Movies.jpg",
+      "sizes": "128x128",
+      "type": "image/jpg"
+    }],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "scope": "./"
+}

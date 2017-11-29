@@ -1,3 +1,32 @@
+  var movieInfo = [];
+  
+  
+  
+             var db = new Dexie('Movie');
+
+        	db.version(1).stores({
+        		movies: 'title, location, rating'
+        	});
+ 
+        	db.open().catch(function(error) {
+        		alert('Uh oh : ' + error);
+        	});
+        	
+        	
+        	
+    function saveMovie (id) {
+      newid = parseInt(id)
+      var info = movieInfo[newid];
+
+        db.movies.add({
+      		 title: info.title,
+      		 location: info.location,
+      		 rating: info.rating
+      	});
+      	
+      	console.log("TEST");
+    }
+    
   $(document).ready(function() {
     $("#screen1").show();
     
@@ -54,7 +83,7 @@
   //     visible: true
   // });
   // marker.setMap(map);
-
+        var counter = 0;
         $.each(response, function(indx, val) {
           
           //console.log(val);
@@ -68,9 +97,11 @@
                     //$("#template", template).attr('id', "show");*/
 
           if (val.location) {
-            var info = {title:val.title, date:val.date, location:val.location_address, rating:val.rating, park:val.park};
+            var info = {title:val.title, date: val.date, location:val.location_address, rating:val.rating, park:val.park};
+            movieInfo[counter] = info;
+            counter++;
             var infoString = val.title + "<br>Date: " + val.date + "<br> Address: " + val.location_address + "<br> Rating: " + val.rating + "<br> Park:" + val.park;
-            var buttonCode =   '<a id=" ' +  info + '"  class="btn btn-primary btn-lg" href="#screen3" role="button" disabled onclick="saveMovie()">Save</a>' 
+            var buttonCode =   '<a id=" ' +  indx + '"  class="btn btn-primary btn-lg" href="#screen3" role="button" disabled onclick="saveMovie(this.id)">Save</a>' 
             var contentString = '<div id="content">' +
               '<div id="siteNotice">' +
               '</div>' +
@@ -96,7 +127,7 @@
             var marker = new google.maps.Marker({
               position: location,
               map: map,
-              title: 'hello',
+              title: val.title,
               visible:true
             });
             
@@ -124,11 +155,10 @@
      // google.maps.event.trigger(map, 'resize');
     });
     
-  
-  function test(){
-    console.log("TESTING CALL");
-  }
 
-    
   });
+  
+  
+  
+
   

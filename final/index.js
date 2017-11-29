@@ -1,6 +1,6 @@
   var movieInfo = [];
   
-  
+  var mylatitude, mylongitude;
   
              var db = new Dexie('Movie');
 
@@ -49,14 +49,13 @@
       if ($("#title").val().length !== 0)
         parameters.title = $("#title").val();
 
-      var parameterString = $.param(parameters);
-      console.log(parameterString);
-
       parameters.rating = $("#rating").val();
       var parameterString = $.param(parameters);
-      var response4 = $.get(url + "?" + parameterString, function() {});
 
-
+      var showLocation = false;
+      if ($("#location").val()){
+showLocation = true;
+      }
       $.get(url + "?" + parameterString, function(response) {
         console.log(url + "?" + parameterString);
         /*        console.log(response);
@@ -77,12 +76,6 @@
         });
 
         
-  // var marker = new google.maps.Marker({
-  //     position: chicago,
-  //     title:"Hello World!",
-  //     visible: true
-  // });
-  // marker.setMap(map);
         var counter = 0;
         $.each(response, function(indx, val) {
           
@@ -125,6 +118,7 @@
             console.log(longitude);
             var location = { lat: latitude, lng: longitude };
             var marker = new google.maps.Marker({
+              icon: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",
               position: location,
               map: map,
               title: val.title,
@@ -136,6 +130,18 @@
             });
           }
         });
+                if(showLocation == true){
+          geoFindMe();
+          var mylocation = {lat: parseFloat(mylatitude), lng: parseFloat(mylongitude)};
+        var marker = new google.maps.Marker({
+            icon: "https://maps.google.com/mapfiles/ms/icons/green-dot.png",
+            position: mylocation,
+            title:"Your Location",
+            visible: true
+        });
+        marker.setMap(map);
+       
+        }
 
       });
 
@@ -186,7 +192,28 @@
 
   });
   
-  
+  function geoFindMe() {
+  var output = document.getElementById("out");
+
+  if (!navigator.geolocation){
+    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+    return;
+  }
+
+  function success(position) {
+   mylatitude  = position.coords.latitude;
+   mylongitude = position.coords.longitude;
+
+  }
+
+  function error() {
+    output.innerHTML = "Unable to retrieve your location";
+  }
+
+
+
+  navigator.geolocation.getCurrentPosition(success, error);
+}
   
 
   

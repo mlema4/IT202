@@ -16,6 +16,8 @@
         	
     function saveMovie (id) {
       newid = parseInt(id)
+      console.log(id);
+      console.log(movieInfo);
       var info = movieInfo[newid];
 
         db.movies.add({
@@ -40,7 +42,6 @@
       $("#search").prop("disabled", false);
 
       var url = "https://data.cityofchicago.org/resource/cm53-g3up.json";
-
       parameters = new Object();
       if (Date.parse($("#date").val())) {
         parameters.date = $("#date").val();
@@ -49,7 +50,9 @@
       if ($("#title").val().length !== 0)
         parameters.title = $("#title").val();
 
+      if($("#rating").val() != "NONE"){
       parameters.rating = $("#rating").val();
+      }
       var parameterString = $.param(parameters);
 
       var showLocation = false;
@@ -77,7 +80,9 @@ showLocation = true;
 
         
         var counter = 0;
+        movieInfo = [];
         $.each(response, function(indx, val) {
+          
           
           //console.log(val);
           /*          var template = $("#template").clone().removeAttr('id').removeClass("hidden");
@@ -92,9 +97,8 @@ showLocation = true;
           if (val.location) {
             var info = {title:val.title, date: val.date, location:val.location_address, rating:val.rating, park:val.park};
             movieInfo[counter] = info;
-            counter++;
             var infoString = val.title + "<br>Date: " + val.date + "<br> Address: " + val.location_address + "<br> Rating: " + val.rating + "<br> Park:" + val.park;
-            var buttonCode =   '<a id=" ' +  indx + '"  class="btn btn-primary btn-lg" href="#screen3" role="button" disabled onclick="saveMovie(this.id)">Save</a>' 
+            var buttonCode =   '<a id=" ' +  counter + '"  class="btn btn-primary btn-lg" href="#screen3" role="button" disabled onclick="saveMovie(this.id)">Save</a>' 
             var contentString = '<div id="content">' +
               '<div id="siteNotice">' +
               '</div>' +
@@ -104,7 +108,7 @@ showLocation = true;
               infoString +
               '</div>' + buttonCode +
               '</div>';
-
+              counter++;
 
             //console.log(contentString);
             var infowindow = new google.maps.InfoWindow({
@@ -162,24 +166,17 @@ showLocation = true;
     });
     
     $("#showSaved").on("click", function(){
-      $(".savedMovies").empty();
-        db.quotes
+    //  $("#info").empty();
+        db.movies
       		.each (function (movie) {
       		  
       		  var template = $("#template").clone().removeAttr('id').removeClass("hidden");
                     
                     
                     $(".card-title", template).html("<Strong>" + movie.title  + "</Strong>");
-                    $(".card-text", template).html("Location" + val.location + "<br>" + "Rating "+ val.rating + "<br>" );
+                    $(".card-text", template).html("Location" + movie.location + "<br>" + "Rating "+ movie.rating + "<br>" );
                     $("#info").append(template);
-                    //$("#template", template).attr('id', "show");*/
-      		  
-      		  
-      		  var clone = $("#listSavedQuotes").clone();
-      		  console.log(clone);
-      		  clone.text(quote.quote);
-      		  clone.attr("id", quote.id);
-      		  $("body").append(clone);
+                    //$("#template", template).attr('id', "show");*
       		  
       		  
       		  //$("#savedQuotes").append(quote.quote);

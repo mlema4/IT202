@@ -67,6 +67,7 @@
         <div class ="formDiv">
                    <label>Rating <br>
           <select id="rating">https://www.googleapis.com/auth/calendar
+                    <option>NONE</option>
                     <option>PG</option>
                     <option>PG-13</option>
                     <option>G</option>
@@ -107,11 +108,13 @@
     <!-- calendar will go here
     Will probably need a button here
     -->
+    
+    <div>
     <p>Upcoming events for you (based on your google calendar)</p>
        <button id="authorize-button" style="display: none;">Authorize</button>
     <button id="signout-button" style="display: none;">Sign Out</button>
  <pre id="content"></pre>
- 
+ </div>
    <button id = "showSaved"> Show saved movies</button>
 
       <div id ="info" class = "container">
@@ -127,7 +130,10 @@
 
   </div>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://v4-alpha.getbootstrap.com/dist/js/bootstrap.min.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="https://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
   
   <script
     src="https://unpkg.com/material-components-web@0.9.1/dist/material-components-web.min.js">
@@ -208,30 +214,18 @@
         gapi.auth2.getAuthInstance().signIn();
       }
 
-      /**
-       *  Sign out the user upon button click.
-       */
+
       function handleSignoutClick(event) {
         gapi.auth2.getAuthInstance().signOut();
       }
 
-      /**
-       * Append a pre element to the body containing the given message
-       * as its text node. Used to display the results of the API call.
-       *
-       * @param {string} message Text to be placed in pre element.
-       */
+
       function appendPre(message) {
         var pre = document.getElementById('content');
         var textContent = document.createTextNode(message + '\n');
         pre.appendChild(textContent);
       }
 
-      /**
-       * Print the summary and start datetime/date of the next ten events in
-       * the authorized user's calendar. If no events are found an
-       * appropriate message is printed.
-       */
       function listUpcomingEvents() {
         gapi.client.calendar.events.list({
           'calendarId': 'primary',

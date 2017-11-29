@@ -155,6 +155,34 @@
      // google.maps.event.trigger(map, 'resize');
     });
     
+    $("#showSaved").on("click", function(){
+      $(".savedMovies").empty();
+        db.quotes
+      		.each (function (movie) {
+      		  
+      		  var template = $("#template").clone().removeAttr('id').removeClass("hidden");
+                    
+                    
+                    $(".card-title", template).html("<Strong>" + movie.title  + "</Strong>");
+                    $(".card-text", template).html("Location" + val.location + "<br>" + "Rating "+ val.rating + "<br>" );
+                    $("#info").append(template);
+                    //$("#template", template).attr('id', "show");*/
+      		  
+      		  
+      		  var clone = $("#listSavedQuotes").clone();
+      		  console.log(clone);
+      		  clone.text(quote.quote);
+      		  clone.attr("id", quote.id);
+      		  $("body").append(clone);
+      		  
+      		  
+      		  //$("#savedQuotes").append(quote.quote);
+      		});
+
+  
+        
+       
+    });
 
   });
   

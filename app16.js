@@ -31,7 +31,8 @@ $("#getQuote").on("click", function() {
 });
 
 $("#say").on("click", function() {
-  say( $("#quote").text() );
+  //say( $("#quote").text() );
+  say("hello Kareem");
 });
 
 function listSavedQuotes () {

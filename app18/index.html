@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <textarea id="input" placeholder= "Enter"></textarea>
+        <button id="translate">Translate</button>
+        <button id = "speak"> speak </button>
+        
+        <script>
+            $(function(){
+                var url = "https://translation.googleapis.com/language/translate/v2?target=fr&format=text&source=en&key=AIzaSyDFE9BAasevH_Kg_JXbC-G2TI2yFkAlw9I&";
+                $("#translate").on("click", function(){
+                    console.log("TEST");
+                    $.get(url + "q=" + $("#input").val()), function(response){
+                        console.log(response);
+                        console.log("test");
+                    };
+                });
+            });
+        </script>
+    </body>
+</html>
